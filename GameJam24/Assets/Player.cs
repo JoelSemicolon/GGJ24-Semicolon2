@@ -70,11 +70,11 @@ public class Player : MonoBehaviour
 
         if (highJump)
         {
-            jumpHeight = 13f;
+            jumpHeight = 15f;
         }
         else
         {
-            jumpHeight = 10f;
+            jumpHeight = 13f;
         }
 
         if (sprint && Input.GetKey(KeyCode.LeftShift))
