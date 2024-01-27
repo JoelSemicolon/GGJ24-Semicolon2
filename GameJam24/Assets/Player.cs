@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            moveSpeed = 3f;
+            moveSpeed = 4f;
         }
 
         Vector3 forward = Camera.main.transform.forward;
