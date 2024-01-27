@@ -79,11 +79,11 @@ public class Player : MonoBehaviour
 
         if (sprint && Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 8f;
+            moveSpeed = 6f;
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = 3f;
         }
 
         Vector3 forward = Camera.main.transform.forward;
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(forward);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), Vector3.down, Quaternion.identity, 0.1f))
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), Vector3.down, Quaternion.identity, 0.2f))
         {
             rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
