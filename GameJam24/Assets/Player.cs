@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody rigidbody;
 
-    float moveSpeed = 5f;
+    float moveSpeed = 3.5f;
     float jumpHeight = 10f;
 
     bool highJump = false;
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            moveSpeed = 4f;
+            moveSpeed = 3.5f;
         }
 
         Vector3 forward = Camera.main.transform.forward;
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(forward);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), Vector3.down, Quaternion.identity, 0.2f))
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position, 0.4f, Vector3.down, out _, 0.7f))
         {
             rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
