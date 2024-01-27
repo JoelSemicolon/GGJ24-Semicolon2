@@ -68,6 +68,24 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (highJump)
+        {
+            jumpHeight = 13f;
+        }
+        else
+        {
+            jumpHeight = 10f;
+        }
+
+        if (sprint && Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 8f;
+        }
+        else
+        {
+            moveSpeed = 5f;
+        }
+
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0f;
         if (forward.sqrMagnitude > 0f)
@@ -89,7 +107,7 @@ public class Player : MonoBehaviour
         moveDirection += forward * forwardMove;
         moveDirection += right * sideMove;
 
-        rigidbody.MovePosition(rigidbody.position + moveDirection * Time.deltaTime);
+        rigidbody.MovePosition(rigidbody.position + moveDirection * moveSpeed * Time.deltaTime);
 
         transform.rotation = Quaternion.LookRotation(forward);
 
