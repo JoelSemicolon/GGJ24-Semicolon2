@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +11,17 @@ public class Player : MonoBehaviour
     float moveSpeed = 3.5f;
     float jumpHeight = 10f;
 
+    float jumpCD = 0;
+
+    bool present = false;
+
     bool highJump = false;
     bool sprint = false;
     bool breakObjects = false;
     bool glide = false;
+
+    public Text dialogue;
+    public GameObject dialogueBox;
 
     void Start()
     {
@@ -86,6 +94,14 @@ public class Player : MonoBehaviour
             moveSpeed = 3.5f;
         }
 
+        if (glide && Input.GetKey(KeyCode.Space) && rigidbody.velocity.y < 0)
+        {
+            Vector3 glideVel = rigidbody.velocity;
+            glideVel.y = -2f;
+
+            rigidbody.velocity = glideVel;
+        }
+
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0f;
         if (forward.sqrMagnitude > 0f)
@@ -111,10 +127,16 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(forward);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position, 0.4f, Vector3.down, out _, 0.7f))
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position, 0.4f, Vector3.down, out _, 0.7f) && jumpCD >= 0)
         {
             rigidbody.velocity = Vector3.zero;
+            jumpCD = 0.25f;
             rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+        }
+
+        if (jumpCD > 0.2f)
+        {
+            jumpCD -= Time.deltaTime;
         }
     }
 }
