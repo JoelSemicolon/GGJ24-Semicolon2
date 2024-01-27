@@ -17,19 +17,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), Vector3.forward, Quaternion.identity, 0.1f))
         {
             rigidbody.MovePosition(rigidbody.position + transform.forward * movespeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), -Vector3.right, Quaternion.identity, 0.1f))
         {
             rigidbody.MovePosition(rigidbody.position - transform.right * movespeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && !Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), -Vector3.forward, Quaternion.identity, 0.1f))
         {
             rigidbody.MovePosition(rigidbody.position - transform.forward * movespeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !Physics.BoxCast(transform.position, new Vector3(0.49f, 0.99f, 0.49f), Vector3.right, Quaternion.identity, 0.1f))
         {
             rigidbody.MovePosition(rigidbody.position + transform.right * movespeed * Time.deltaTime);
         }
