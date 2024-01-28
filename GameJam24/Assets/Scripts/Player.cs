@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
     float timer = 0f;
     string text;
 
-    bool breakObjects = false;
-    bool glide = false;
+    public static bool breakObjects = false;
+    public static bool glide = false;
 
     private bool attacking;
     private object animationController;
@@ -35,9 +35,20 @@ public class Player : MonoBehaviour
     public GameObject endScreen;
     private static Vector3 position;
 
+    public static bool gotSpeedBoost = false;
+    public static bool gotJumpBoost = false;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+
+        if (gotSpeedBoost)
+        {
+            moveSpeed = 6f;
+        }
+        if (gotJumpBoost)
+        {
+            jumpHeight = 15f;
+        }
     }
 
     // Update is called once per frame
@@ -190,6 +201,7 @@ public class Player : MonoBehaviour
             {
                 present = false;
                 jumpHeight = 15f;
+                gotJumpBoost = true;
                 dialogue.text = "Thanks for the first present.";
                 text = "Here's something in return, it lets you jump higher!";
                 timer = 5f;
@@ -201,6 +213,7 @@ public class Player : MonoBehaviour
             {
                 present = false;
                 moveSpeed = 6f;
+                gotSpeedBoost = true;
                 dialogue.text = "Thanks for the second present.";
                 text = "Here's something in return, it lets you run faster!";
                 timer = 5f;
