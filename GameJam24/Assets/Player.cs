@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
+
     private static void OnTriggerEnter(Collider other)
     {
         if (!Physics.Raycast(origin:position,Vector3.forward))
@@ -159,10 +159,10 @@ public class Player : MonoBehaviour
     }
 
 }
-=======
+
     
        
-    }
+    
 
->>>>>>> Stashed changes
+
 
