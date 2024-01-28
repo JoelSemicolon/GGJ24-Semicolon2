@@ -38,13 +38,13 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (jumpHeight == 13f)
+            if (jumpHeight == 15f)
             {
                 jumpHeight = 10f;
             }
             else
             {
-                jumpHeight = 13f;
+                jumpHeight = 15f;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
             if (presents == 0)
             {
                 present = false;
-                jumpHeight = 13f;
+                jumpHeight = 15f;
                 dialogue.text = "Thanks for the first present.";
                 text = "Here's something in return, it lets you jump higher!";
                 timer = 5f;
