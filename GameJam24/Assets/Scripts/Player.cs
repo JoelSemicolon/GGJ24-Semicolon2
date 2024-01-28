@@ -192,6 +192,10 @@ public class Player : MonoBehaviour
             {
                 present = true;
                 Destroy(other.gameObject);
+                dialogue.text = "I should gift this to my friend. I'm sure he would love it!";
+                timer = 5f;
+                dialogueActive = 5f;
+                dialogueBox.SetActive(true);
             }
         }
 
@@ -202,7 +206,7 @@ public class Player : MonoBehaviour
                 present = false;
                 jumpHeight = 15f;
                 gotJumpBoost = true;
-                dialogue.text = "Thanks for the first present.";
+                dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you jump higher!";
                 timer = 5f;
                 dialogueActive = 10f;
@@ -214,7 +218,7 @@ public class Player : MonoBehaviour
                 present = false;
                 moveSpeed = 6f;
                 gotSpeedBoost = true;
-                dialogue.text = "Thanks for the second present.";
+                dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you run faster!";
                 timer = 5f;
                 dialogueActive = 10f;
@@ -225,7 +229,7 @@ public class Player : MonoBehaviour
             {
                 present = false;
                 breakObjects = true;
-                dialogue.text = "Thanks for the third present.";
+                dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you break walls with left click!";
                 timer = 5f;
                 dialogueActive = 10f;
@@ -236,7 +240,7 @@ public class Player : MonoBehaviour
             {
                 present = false;
                 glide = true;
-                dialogue.text = "Thanks for the forth present.";
+                dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you glide in the air by holding down space!";
                 timer = 5f;
                 dialogueActive = 10f;
@@ -253,6 +257,13 @@ public class Player : MonoBehaviour
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
+        }
+        if (other.gameObject.tag == "dialogue" && !present)
+        {
+            dialogue.text = "I heard there are presents in the cave, can you find them for me?";
+            timer = 5f;
+            dialogueActive = 5f;
+            dialogueBox.SetActive(true);
         }
     }
 }
