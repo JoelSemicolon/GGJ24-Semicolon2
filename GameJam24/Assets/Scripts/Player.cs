@@ -86,6 +86,10 @@ public class Player : MonoBehaviour
                 glide = true;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            present = true;
+        }
 
         if (glide && Input.GetKey(KeyCode.Space) && rigidbody.velocity.y < 0)
         {
@@ -170,6 +174,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "present")
+        {
+            if (!present)
+            {
+                present = true;
+                Destroy(other.gameObject);
+            }
+        }
+
         if (other.gameObject.tag == "dialogue" && present)
         {
             if (presents == 0)
