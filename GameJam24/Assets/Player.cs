@@ -144,25 +144,17 @@ public class Player : MonoBehaviour
         {
             jumpCD -= Time.deltaTime;
         }
-    }
 
-<<<<<<< Updated upstream
-    private static void OnTriggerEnter(Collider other)
-    {
-        if (!Physics.Raycast(origin:position,Vector3.forward))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (other.gameObject.tag == "Breakable door")
+            if (Physics.Raycast(transform.position,transform.forward,out RaycastHit hit,2f))
             {
-                Destroy(other.gameObject);
+                if (hit.collider.gameObject.tag == "Breakable door")
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+
             }
         }
     }
-
 }
-=======
-    
-       
-    }
-
->>>>>>> Stashed changes
-
