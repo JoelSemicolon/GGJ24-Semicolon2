@@ -7,7 +7,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-        // Start is called before the first frame update
+    // Start is called before the first frame update
     Rigidbody rigidbody;
 
     float moveSpeed = 3.5f;
@@ -86,6 +86,10 @@ public class Player : MonoBehaviour
                 glide = true;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            present = true;
+        }
 
         if (glide && Input.GetKey(KeyCode.Space) && rigidbody.velocity.y < 0)
         {
@@ -131,6 +135,7 @@ public class Player : MonoBehaviour
         {
             jumpCD -= Time.deltaTime;
         }
+
         if (timer > 0f)
         {
             timer -= Time.deltaTime;
@@ -148,83 +153,88 @@ public class Player : MonoBehaviour
                 dialogueBox.SetActive(false);
             }
         }
-    }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!Physics.Raycast(origin:position,Vector3.forward))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (other.gameObject.tag == "Breakable door")
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f))
             {
-                Destroy(other.gameObject);
-            }
-
-            if (other.gameObject.tag == "dialogue" && present)
-            {
-                if (presents == 0)
+                if (hit.collider.gameObject.tag == "Breakable door")
                 {
-                    present = false;
-                    jumpHeight = 15f;
-                    dialogue.text = "Thanks for the first present.";
-                    text = "Here's something in return, it lets you jump higher!";
-                    timer = 5f;
-                    dialogueActive = 10f;
-                    dialogueBox.SetActive(true);
-                    presents += 1;
-                }
-                else if (presents == 1)
-                {
-                    present = false;
-                    moveSpeed = 6f;
-                    dialogue.text = "Thanks for the second present.";
-                    text = "Here's something in return, it lets you run faster!";
-                    timer = 5f;
-                    dialogueActive = 10f;
-                    dialogueBox.SetActive(true);
-                    presents += 1;
-                }
-                else if (presents == 2)
-                {
-                    present = false;
-                    breakObjects = true;
-                    dialogue.text = "Thanks for the third present.";
-                    text = "Here's something in return, it lets you break walls!";
-                    timer = 5f;
-                    dialogueActive = 10f;
-                    dialogueBox.SetActive(true);
-                    presents += 1;
-                }
-                else if (presents == 3)
-                {
-                    present = false;
-                    glide = true;
-                    dialogue.text = "Thanks for the forth present.";
-                    text = "Here's something in return, it lets you glide in the air by holding down space!";
-                    timer = 5f;
-                    dialogueActive = 10f;
-                    dialogueBox.SetActive(true);
-                    presents += 1;
-                }
-                else if (presents == 4)
-                {
-                    present = false;
-                    dialogue.text = "Thanks for the fifth present.";
-                    text = "Wow this is amazing, thanks for cheering me up!";
-                    timer = 5f;
-                    dialogueActive = 10f;
-                    dialogueBox.SetActive(true);
-                    presents += 1;
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "present")
+        {
+            if (!present)
+            {
+                present = true;
+                Destroy(other.gameObject);
+            }
+        }
+
+        if (other.gameObject.tag == "dialogue" && present)
+        {
+            if (presents == 0)
+            {
+                present = false;
+                jumpHeight = 15f;
+                dialogue.text = "Thanks for the first present.";
+                text = "Here's something in return, it lets you jump higher!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 1)
+            {
+                present = false;
+                moveSpeed = 6f;
+                dialogue.text = "Thanks for the second present.";
+                text = "Here's something in return, it lets you run faster!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 2)
+            {
+                present = false;
+                breakObjects = true;
+                dialogue.text = "Thanks for the third present.";
+                text = "Here's something in return, it lets you break walls!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 3)
+            {
+                present = false;
+                glide = true;
+                dialogue.text = "Thanks for the forth present.";
+                text = "Here's something in return, it lets you glide in the air by holding down space!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 4)
+            {
+                present = false;
+                dialogue.text = "Thanks for the fifth present.";
+                text = "Wow this is amazing, thanks for cheering me up!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+        }
+    }
 }
-
-    
-       
-    
-
-
-

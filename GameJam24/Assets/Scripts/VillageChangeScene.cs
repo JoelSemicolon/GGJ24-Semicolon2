@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CaveChangeScene : MonoBehaviour
+public class VillageChangeScene : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("parkour area");
+        }
     }
 }
