@@ -7,7 +7,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-        // Start is called before the first frame update
+    // Start is called before the first frame update
     Rigidbody rigidbody;
 
     float moveSpeed = 3.5f;
@@ -150,18 +150,14 @@ public class Player : MonoBehaviour
             }
         }
 
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (!Physics.Raycast(origin:position,Vector3.forward))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f))
             {
-                if (Physics.Raycast(transform.position,transform.forward,out RaycastHit hit,2f))
+                if (hit.collider.gameObject.tag == "Breakable door")
                 {
-                    if (hit.collider.gameObject.tag == "Breakable door")
-                    {
-                        Destroy(hit.collider.gameObject);
-                    }
-
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
