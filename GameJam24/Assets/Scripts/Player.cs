@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && breakObjects)
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f))
             {
@@ -160,8 +160,8 @@ public class Player : MonoBehaviour
                 gotJumpBoost = true;
                 dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you jump higher!";
-                timer = 5f;
-                dialogueActive = 10f;
+                timer = 3f;
+                dialogueActive = 8f;
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
@@ -172,8 +172,8 @@ public class Player : MonoBehaviour
                 gotSpeedBoost = true;
                 dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you run faster!";
-                timer = 5f;
-                dialogueActive = 10f;
+                timer = 3f;
+                dialogueActive = 8f;
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
@@ -182,9 +182,9 @@ public class Player : MonoBehaviour
                 present = false;
                 breakObjects = true;
                 dialogue.text = "Thanks for the present.";
-                text = "Here's something in return, it lets you break walls with left click!";
-                timer = 5f;
-                dialogueActive = 10f;
+                text = "Here's something in return, it lets you break wooden walls and crates with left click!";
+                timer = 3f;
+                dialogueActive = 8f;
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
@@ -194,8 +194,8 @@ public class Player : MonoBehaviour
                 glide = true;
                 dialogue.text = "Thanks for the present.";
                 text = "Here's something in return, it lets you glide in the air by holding down space!";
-                timer = 5f;
-                dialogueActive = 10f;
+                timer = 3f;
+                dialogueActive = 8f;
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
@@ -204,8 +204,8 @@ public class Player : MonoBehaviour
                 present = false;
                 dialogue.text = "Thanks for the fifth present.";
                 text = "Wow this is amazing, thanks for cheering me up!";
-                timer = 5f;
-                dialogueActive = 10f;
+                timer = 3f;
+                dialogueActive = 5f;
                 dialogueBox.SetActive(true);
                 presents += 1;
             }
