@@ -54,55 +54,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (jumpHeight == 15f)
-            {
-                jumpHeight = 10f;
-            }
-            else
-            {
-                jumpHeight = 15f;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (moveSpeed == 6f)
-            {
-                moveSpeed = 3.5f;
-            }
-            else
-            {
-                moveSpeed = 6f;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (breakObjects)
-            {
-                breakObjects = false;
-            }
-            else
-            {
-                breakObjects = true;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (glide)
-            {
-                glide = false;
-            }
-            else
-            {
-                glide = true;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            present = true;
-        }
-
         if (glide && Input.GetKey(KeyCode.Space) && rigidbody.velocity.y < 0)
         {
             Vector3 glideVel = rigidbody.velocity;
@@ -204,10 +155,10 @@ public class Player : MonoBehaviour
             if (presents == 0)
             {
                 present = false;
-                moveSpeed = 6f;
-                gotSpeedBoost = true;
+                jumpHeight = 15f;
+                gotJumpBoost = true;
                 dialogue.text = "Thanks for the present.";
-                text = "Here's something in return, it lets you run faster!";
+                text = "Here's something in return, it lets you jump higher!";
                 timer = 5f;
                 dialogueActive = 10f;
                 dialogueBox.SetActive(true);
@@ -216,10 +167,10 @@ public class Player : MonoBehaviour
             else if (presents == 1)
             {
                 present = false;
-                jumpHeight = 15f;
-                gotJumpBoost = true;
+                moveSpeed = 6f;
+                gotSpeedBoost = true;
                 dialogue.text = "Thanks for the present.";
-                text = "Here's something in return, it lets you jump higher!";
+                text = "Here's something in return, it lets you run faster!";
                 timer = 5f;
                 dialogueActive = 10f;
                 dialogueBox.SetActive(true);
@@ -260,7 +211,7 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.tag == "dialogue" && !present && dialogueActive <= 0)
         {
-            dialogue.text = "I heard there are presents in the cave, can you find them for me?";
+            dialogue.text = "I heard there are presents in the cave, I think they might cheer me up.";
             timer = 5f;
             dialogueActive = 5f;
             dialogueBox.SetActive(true);
