@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
                 present = false;
                 breakObjects = true;
                 dialogue.text = "Thanks for the third present.";
-                text = "Here's something in return, it lets you break walls!";
+                text = "Here's something in return, it lets you break walls with left click!";
                 timer = 5f;
                 dialogueActive = 10f;
                 dialogueBox.SetActive(true);
