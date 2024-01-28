@@ -258,7 +258,7 @@ public class Player : MonoBehaviour
                 presents += 1;
             }
         }
-        if (other.gameObject.tag == "dialogue" && !present)
+        if (other.gameObject.tag == "dialogue" && !present && dialogueActive <= 0)
         {
             dialogue.text = "I heard there are presents in the cave, can you find them for me?";
             timer = 5f;
