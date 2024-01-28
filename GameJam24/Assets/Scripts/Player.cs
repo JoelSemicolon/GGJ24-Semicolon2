@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 
     float jumpCD = 0f;
 
-    bool present = false;
+    public static bool present = false;
 
-    int presents = 0;
+    public static int presents = 0;
 
     float dialogueActive = 0f;
     float timer = 0f;
