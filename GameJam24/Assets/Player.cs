@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -15,12 +16,16 @@ public class Player : MonoBehaviour
 
     bool present = false;
 
-    bool highJump = false;
-    bool sprint = false;
     bool breakObjects = false;
     bool glide = false;
 
-    public Text dialogue;
+    int presents = 0;
+
+    float dialogueActive = 0f;
+    float timer = 0f;
+    string text;
+
+    public TMP_Text dialogue;
     public GameObject dialogueBox;
 
     void Start()
@@ -33,24 +38,24 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (highJump)
+            if (jumpHeight == 13f)
             {
-                highJump = false;
+                jumpHeight = 10f;
             }
             else
             {
-                highJump = true;
+                jumpHeight = 13f;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (sprint)
+            if (moveSpeed == 6f)
             {
-                sprint = false;
+                moveSpeed = 3.5f;
             }
             else
             {
-                sprint = true;
+                moveSpeed = 6f;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -75,23 +80,9 @@ public class Player : MonoBehaviour
                 glide = true;
             }
         }
-
-        if (highJump)
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            jumpHeight = 15f;
-        }
-        else
-        {
-            jumpHeight = 13f;
-        }
-
-        if (sprint && Input.GetKey(KeyCode.LeftShift))
-        {
-            moveSpeed = 6f;
-        }
-        else
-        {
-            moveSpeed = 3.5f;
+            present = true;
         }
 
         if (glide && Input.GetKey(KeyCode.Space) && rigidbody.velocity.y < 0)
@@ -127,16 +118,94 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(forward);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position, 0.4f, Vector3.down, out _, 0.7f) && jumpCD >= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && Physics.SphereCast(transform.position, 0.4f, Vector3.down, out _, 0.7f) && jumpCD <= 0)
         {
             rigidbody.velocity = Vector3.zero;
             jumpCD = 0.25f;
             rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
         }
 
-        if (jumpCD > 0.2f)
+        if (jumpCD > 0f)
         {
             jumpCD -= Time.deltaTime;
+        }
+
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                dialogue.text = text;
+            }
+        }
+
+        if (dialogueActive > 0f)
+        {
+            dialogueActive -= Time.deltaTime;
+            if (dialogueActive <= 0)
+            {
+                dialogueBox.SetActive(false);
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "dialogue" && present)
+        {
+            if (presents == 0)
+            {
+                present = false;
+                jumpHeight = 13f;
+                dialogue.text = "Thanks for the first present.";
+                text = "Here's something in return, it lets you jump higher!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 1)
+            {
+                present = false;
+                moveSpeed = 6f;
+                dialogue.text = "Thanks for the second present.";
+                text = "Here's something in return, it lets you run faster!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 2)
+            {
+                present = false;
+                breakObjects = true;
+                dialogue.text = "Thanks for the third present.";
+                text = "Here's something in return, it lets you break walls!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 3)
+            {
+                present = false;
+                glide = true;
+                dialogue.text = "Thanks for the forth present.";
+                text = "Here's something in return, it lets you glide in the air by holding down space!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
+            else if (presents == 4)
+            {
+                present = false;
+                dialogue.text = "Thanks for the fifth present.";
+                text = "Wow this is amazing, thanks for cheering me up!";
+                timer = 5f;
+                dialogueActive = 10f;
+                dialogueBox.SetActive(true);
+                presents += 1;
+            }
         }
     }
 }
