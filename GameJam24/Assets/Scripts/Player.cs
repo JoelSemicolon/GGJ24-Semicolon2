@@ -204,10 +204,10 @@ public class Player : MonoBehaviour
             if (presents == 0)
             {
                 present = false;
-                jumpHeight = 15f;
-                gotJumpBoost = true;
+                moveSpeed = 6f;
+                gotSpeedBoost = true;
                 dialogue.text = "Thanks for the present.";
-                text = "Here's something in return, it lets you jump higher!";
+                text = "Here's something in return, it lets you run faster!";
                 timer = 5f;
                 dialogueActive = 10f;
                 dialogueBox.SetActive(true);
@@ -216,10 +216,10 @@ public class Player : MonoBehaviour
             else if (presents == 1)
             {
                 present = false;
-                moveSpeed = 6f;
-                gotSpeedBoost = true;
+                jumpHeight = 15f;
+                gotJumpBoost = true;
                 dialogue.text = "Thanks for the present.";
-                text = "Here's something in return, it lets you run faster!";
+                text = "Here's something in return, it lets you jump higher!";
                 timer = 5f;
                 dialogueActive = 10f;
                 dialogueBox.SetActive(true);
