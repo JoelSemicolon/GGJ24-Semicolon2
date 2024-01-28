@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     public TMP_Text dialogue;
     public GameObject dialogueBox;
+    public GameObject endScreen;
     private static Vector3 position;
 
     void Start()
@@ -151,6 +152,10 @@ public class Player : MonoBehaviour
             if (dialogueActive <= 0)
             {
                 dialogueBox.SetActive(false);
+                if (presents == 5)
+                {
+                    endScreen.SetActive(true);
+                }
             }
         }
 
