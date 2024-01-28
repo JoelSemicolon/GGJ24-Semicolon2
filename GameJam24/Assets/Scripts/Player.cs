@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
             if (!present)
             {
                 present = true;
+                other.gameObject.SendMessage("destroyPresent");
                 Destroy(other.gameObject);
                 dialogue.text = "I should gift this to my friend. I'm sure he would love it!";
                 timer = 5f;

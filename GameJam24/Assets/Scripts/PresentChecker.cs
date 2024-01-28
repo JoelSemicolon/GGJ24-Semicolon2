@@ -15,7 +15,7 @@ public class PresentChecker : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void destroyPresent()
     {
         if (!destroyedBefore.Contains(gameObject.name))
         {
