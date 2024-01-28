@@ -148,7 +148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6078977087169403831, guid: b3432f634e427c14aaaa87afd615a63c, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
       value: -52.95
+=======
+      value: -54.17469
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6078977087169403831, guid: b3432f634e427c14aaaa87afd615a63c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -484,7 +488,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 4
+=======
+  m_RootOrder: 3
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983530046
 GameObject:

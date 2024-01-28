@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    Rigidbody rigidbody;
+    new
+        // Start is called before the first frame update
+        Rigidbody rigidbody;
 
     float moveSpeed = 3.5f;
     float jumpHeight = 10f;
@@ -19,6 +21,9 @@ public class Player : MonoBehaviour
     bool sprint = false;
     bool breakObjects = false;
     bool glide = false;
+    private bool attacking;
+    private object animationController;
+    private object particlePrefab;
 
     public Text dialogue;
     public GameObject dialogueBox;
@@ -141,6 +146,7 @@ public class Player : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     private static void OnTriggerEnter(Collider other)
     {
         if (!Physics.Raycast(origin:position,Vector3.forward))
@@ -153,4 +159,10 @@ public class Player : MonoBehaviour
     }
 
 }
+=======
+    
+       
+    }
+
+>>>>>>> Stashed changes
 
