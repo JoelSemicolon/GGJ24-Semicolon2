@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     float rotY = 0f;
 
     float rotateSpeed = 2f;
-    float distance = 6f;
+    float distance = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,6 @@ public class CameraController : MonoBehaviour
         rotY += Input.GetAxis("Mouse X") * rotateSpeed;
         rotX = Mathf.Clamp(rotX, -10f, 90f);
         transform.rotation = Quaternion.Euler(rotX, rotY, 0f);
-        transform.position = target.transform.position - transform.forward * distance + Vector3.up * 2.5f;
+        transform.position = target.transform.position - transform.forward * distance + Vector3.up * 1f;
     }
 }
